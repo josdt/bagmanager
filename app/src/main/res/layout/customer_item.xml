@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:text="Họ tên:"/>
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:textStyle="italic"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:text="SĐT:"/>
+            <TextView
+                android:id="@+id/tvPhone"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:textStyle="italic"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:text="Email:"/>
+            <TextView
+                android:id="@+id/tvEmail"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:textStyle="italic"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:text="Địa chỉ:"/>
+            <TextView
+                android:id="@+id/tvAddress"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:textStyle="italic"/>
+        </LinearLayout>
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/ivXoaCustomer"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/xoa"
+        android:layout_marginTop="10dp"/>
+</LinearLayout>

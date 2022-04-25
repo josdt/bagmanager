@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">bagsmanager</string>
+
+    <string-array name="color">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="brand">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+</resources>

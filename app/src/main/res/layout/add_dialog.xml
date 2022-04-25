@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="#F4E2E8"
+    android:paddingTop="10dp">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="Tiêu đề sản phẩm:"
+            android:textSize="15dp"
+            android:textStyle="bold"/>
+        <EditText
+            android:id="@+id/edtTitle"
+            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_marginLeft="20dp"
+            android:inputType="text">
+        </EditText>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="Đơn giá:"
+            android:textStyle="bold"
+            android:textSize="15dp"/>
+        <EditText
+            android:id="@+id/edtPrice"
+            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:inputType="number"
+            android:layout_marginLeft="20dp">
+        </EditText>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="Màu sắc:"
+            android:textSize="15dp"
+            android:textStyle="bold"/>
+        <Spinner
+            android:id="@+id/spnColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="42dp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="Thương hiệu:"
+            android:textSize="15dp"
+            android:textStyle="bold"/>
+        <Spinner
+            android:id="@+id/spnBrand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="42dp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="Số lượng:"
+            android:textSize="15dp"
+            android:textStyle="bold"/>
+        <EditText
+            android:id="@+id/edtQuantity"
+            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:inputType="number"
+            android:layout_marginLeft="20dp">
+        </EditText>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="Hình ảnh:"
+            android:textSize="15dp"
+            android:textStyle="bold"/>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="20dp"
+            android:text="Mô tả:"
+            android:textSize="15dp"
+            android:textStyle="bold"/>
+        <EditText
+            android:id="@+id/edtDescr"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:inputType="text|textMultiLine"
+            android:gravity="top">
+        </EditText>
+
+    </LinearLayout>
+
+
+</LinearLayout>
