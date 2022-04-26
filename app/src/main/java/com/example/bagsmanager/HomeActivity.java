@@ -44,8 +44,8 @@ public class HomeActivity extends AppCompatActivity {
         ivStatistics.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent= new Intent(HomeActivity.this, ProductActivity.class);
-//                startActivity(intent);
+                Intent intent= new Intent(HomeActivity.this, BillActivity.class);
+                startActivity(intent);
             }
         });
         ivExit.setOnClickListener(new View.OnClickListener() {

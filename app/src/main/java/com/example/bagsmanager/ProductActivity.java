@@ -29,8 +29,7 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.bagsmanager.API.APIService;
-import com.example.bagsmanager.API.RetrofitClient;
+
 import com.example.bagsmanager.Adapter.ProductAdapter;
 import com.example.bagsmanager.Model.Color;
 import com.example.bagsmanager.Model.Customer;

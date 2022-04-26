@@ -4,13 +4,13 @@ import java.util.Date;
 
 public class Bill {
     int idBill;
-    Customer idUser;
+    int idUser;
     Date dateBill;
 
     public Bill() {
     }
 
-    public Bill(int idBill, Customer idUser, Date dateBill) {
+    public Bill(int idBill, int idUser, Date dateBill) {
         this.idBill = idBill;
         this.idUser = idUser;
         this.dateBill = dateBill;
@@ -20,7 +20,7 @@ public class Bill {
         return idBill;
     }
 
-    public Customer getIdUser() {
+    public int getIdUser() {
         return idUser;
     }
 
@@ -32,7 +32,7 @@ public class Bill {
         this.idBill = idBill;
     }
 
-    public void setIdUser(Customer idUser) {
+    public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
 
