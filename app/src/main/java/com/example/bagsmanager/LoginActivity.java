@@ -31,7 +31,7 @@ import java.io.UnsupportedEncodingException;
 public class LoginActvity extends AppCompatActivity {
     EditText edtUser, edtPassword;
     Button btnLogin;
-    Customer cus=null;
+    public static Customer customerlogin;
 
     String urllogin="http://10.0.2.2:3000/api/customer/login";
 
@@ -53,21 +53,16 @@ public class LoginActvity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                String user= edtUser.getText().toString().trim();
-//                String pass= edtPassword.getText().toString().trim();
-//                try {
-//                    login(urllogin,user,pass);
-//                    String email = cus.getEmail();
-//                    Log.d("Tag", email);
-//                    if(cus==null){
-//                        Toast.makeText(LoginActvity.this, "dang nhap sai mk hoac pass", Toast.LENGTH_SHORT).show();
-//
-//                    } else{
-//                        Toast.makeText(LoginActvity.this, "dang nhap thanh cong", Toast.LENGTH_SHORT).show();
-//                    }
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
+                String user= edtUser.getText().toString().trim();
+                String pass= edtPassword.getText().toString().trim();
+                try {
+                    login(urllogin,user,pass);
+                    Toast.makeText(LoginActvity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+
+                } catch (JSONException  e) {
+                    e.printStackTrace();
+                    Toast.makeText(LoginActvity.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
+                }
                 Intent intent= new Intent(LoginActvity.this,HomeActivity.class);
                 startActivity(intent);
             }
@@ -81,7 +76,6 @@ public class LoginActvity extends AppCompatActivity {
         jsonbody.put("username", username);
         jsonbody.put("password", password);
 
-//        cus=null;
         final String requestbody = jsonbody.toString();
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, url, null,
                 new com.android.volley.Response.Listener<JSONArray>() {
@@ -90,8 +84,11 @@ public class LoginActvity extends AppCompatActivity {
                         for(int i=0; i<response.length();i++){
                             try {
                                 JSONObject k= response.getJSONObject(i);
-                                cus= new Customer(k.getInt("idUser"), k.getInt("idRole"),k.getString("username"),k.getString("password"),k.getString("addressCustomer"),k.getString("email"),k.getString("phone"),k.getJSONObject("sex").getJSONArray("data").getInt(0),k.getString("name"));
-                                return;
+                                customerlogin = new Customer(k.getInt("idUser"), k.getInt("idRole"),k.getString("username"),
+                                        k.getString("password"),k.getString("addressCustomer"),k.getString("email"),
+                                        k.getString("phone"),k.getJSONObject("sex").getJSONArray("data").getInt(0),
+                                        k.getString("name"));
+
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
