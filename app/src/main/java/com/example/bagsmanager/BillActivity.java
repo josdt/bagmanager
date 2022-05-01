@@ -1,8 +1,10 @@
 package com.example.bagsmanager;
 
+
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.Toast;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,15 +15,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.bagsmanager.Adapter.BillAdapter;
-import com.example.bagsmanager.Adapter.CustomerAdapter;
 import com.example.bagsmanager.Model.Bill;
-import com.example.bagsmanager.Model.Customer;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class BillActivity extends AppCompatActivity {
@@ -57,12 +58,13 @@ public class BillActivity extends AppCompatActivity {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
+                        SimpleDateFormat formater= new SimpleDateFormat("yyyy-MM-dd");
                         for(int i=0; i<response.length(); i++){
                             try {
                                 JSONObject k =response.getJSONObject(i);
-                                bills.add(new Bill(k.getInt("idBill"),k.getInt("idUser"), Date.valueOf(k.getString("dateBill"))));
-
-                            } catch (JSONException e) {
+                                java.util.Date date= formater.parse(k.getString("dateBill"));
+                                bills.add(new Bill(k.getInt("idBill"),k.getInt("idUser"), date));
+                            } catch (JSONException | ParseException e) {
                                 e.printStackTrace();
                             }
                         }

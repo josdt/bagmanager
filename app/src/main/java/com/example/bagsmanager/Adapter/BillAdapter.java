@@ -46,8 +46,8 @@ public class BillAdapter extends ArrayAdapter<Bill> {
 
         Bill bill = bills.get(position);
 
-        tvidBill.setText(bill.getIdBill());
-        tvidUser.setText(bill.getIdUser());
+        tvidBill.setText(String.valueOf(bill.getIdBill()));
+        tvidUser.setText(String.valueOf(bill.getIdUser()));
         tvNgay.setText(String.valueOf(bill.getDateBill()));
 
         return convertView;

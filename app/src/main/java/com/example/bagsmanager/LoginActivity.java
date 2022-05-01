@@ -4,23 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.bagsmanager.Model.Customer;
-import com.google.android.material.tabs.TabLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,7 +24,7 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 
-public class LoginActvity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
     EditText edtUser, edtPassword;
     Button btnLogin;
     public static Customer customerlogin;
@@ -57,20 +53,20 @@ public class LoginActvity extends AppCompatActivity {
                 String pass= edtPassword.getText().toString().trim();
                 try {
                     login(urllogin,user,pass);
-                    Toast.makeText(LoginActvity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
 
                 } catch (JSONException  e) {
                     e.printStackTrace();
-                    Toast.makeText(LoginActvity.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
                 }
-                Intent intent= new Intent(LoginActvity.this,HomeActivity.class);
+                Intent intent= new Intent(LoginActivity.this,HomeActivity.class);
                 startActivity(intent);
             }
         });
     }
 
     private void login(String url , String username, String password ) throws JSONException {
-        RequestQueue mRequestQueue = Volley.newRequestQueue(LoginActvity.this);
+        RequestQueue mRequestQueue = Volley.newRequestQueue(LoginActivity.this);
 
         JSONObject jsonbody = new JSONObject();
         jsonbody.put("username", username);
@@ -98,7 +94,7 @@ public class LoginActvity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(LoginActvity.this, "Lỗi!" + error, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Lỗi!" + error, Toast.LENGTH_SHORT).show();
                     }
                 }
 
