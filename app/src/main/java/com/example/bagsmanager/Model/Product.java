@@ -6,7 +6,7 @@ import androidx.annotation.Nullable;
 public class Product  {
 
     @Nullable
-            int idProduct;
+    int idProduct;
     float price;
     String descr;
     String title;

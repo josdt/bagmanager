@@ -5,14 +5,17 @@
       <map>
         <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
         <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/add_dialog.xml" value="0.4" />
-        <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/bill_item.xml" value="0.259375" />
-        <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/customer_item.xml" value="0.22826086956521738" />
-        <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/homepage.xml" value="0.259375" />
+        <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/bill_detail.xml" value="0.259375" />
+        <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/bill_detail_item.xml" value="0.259375" />
+        <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/bill_item.xml" value="0.264" />
+        <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/customer_item.xml" value="0.264" />
+        <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/detail_bill_item.xml" value="0.259375" />
+        <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/homepage.xml" value="0.2" />
         <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/list_bill.xml" value="0.259375" />
         <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/list_customer.xml" value="0.22826086956521738" />
-        <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/list_product.xml" value="0.1" />
-        <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/login.xml" value="0.1" />
-        <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/product_item.xml" value="0.1" />
+        <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/list_product.xml" value="0.2" />
+        <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/login.xml" value="0.2" />
+        <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/product_item.xml" value="0.4" />
         <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/statictis.xml" value="0.259375" />
         <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/statictis_item.xml" value="0.259375" />
       </map>

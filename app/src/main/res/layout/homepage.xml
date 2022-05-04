@@ -7,28 +7,19 @@
 
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="QUẢN LÝ BÁN HÀNG"
-        android:textSize="25dp"
-        android:textColor="#4B06C5"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:textAlignment="center"/>
+        style="@style/tvTitle"
+        android:text="QUẢN LÝ BÁN HÀNG"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="35dp">
 
         <ImageView
             android:id="@+id/ivProductManager"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/product"/>
+            style="@style/ivProductManager"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,13 +33,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="35dp">
 
         <ImageView
             android:id="@+id/ivCustomerManager"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/guest"/>
+            style="@style/ivCustomerManager"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -62,13 +51,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="35dp">
 
         <ImageView
             android:id="@+id/ivBillManager"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/chart"/>
+            style="@style/ivBillManager"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -82,13 +69,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="35dp">
 
         <ImageView
             android:id="@+id/ivStatistics"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/chart"/>
+            style="@style/ivStatictis"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -102,13 +87,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="35dp">
 
         <ImageView
             android:id="@+id/ivExit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/logout"/>
+            style="@style/ivLogout"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

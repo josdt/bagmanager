@@ -5,15 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/backgoundcommon"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    style="@style/view">
 
     <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="100dp"
-        android:layout_gravity="center"
-        android:src="@drawable/logo"/>
+        style="@style/ivLogo"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -22,15 +18,10 @@
         android:layout_marginTop="50dp">
 
         <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/user"/>
+            style="@style/ivUser"/>
         <EditText
             android:id="@+id/edtUser"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:hint="Tài khoản"/>
+            style="@style/edtUser"/>
 
     </LinearLayout>
     <LinearLayout
@@ -39,44 +30,21 @@
         android:layout_gravity="center">
 
         <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/lock"/>
+            style="@style/ivPassword"/>
         <EditText
             android:id="@+id/edtPassword"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:hint="Mật khẩu"/>
+            style="@style/edtPassword"/>
 
     </LinearLayout>
     
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="150dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center"
-        android:backgroundTint="#FA4D88"
-        android:text="Đăng nhập"/>
+        style="@style/btnLogin"/>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:text="KHÁCH HÀNG LÀ THƯỢNG ĐẾ"
-        android:textStyle="italic"
-        android:textColor="@color/black"
-        android:layout_gravity="center"
-        android:gravity="center"/>
+        style="@style/tvSlogan1"/>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="THE CUSTOMER IS ALWAYS RIGHT"
-        android:textStyle="italic"
-        android:textColor="@color/black"
-        android:layout_gravity="center"
-        android:gravity="center"/>
+        style="@style/tvSlogan2"/>
 
 </LinearLayout>

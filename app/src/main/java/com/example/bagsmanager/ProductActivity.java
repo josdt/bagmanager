@@ -1,12 +1,14 @@
 package com.example.bagsmanager;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,6 +33,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import com.example.bagsmanager.Adapter.ProductAdapter;
+import com.example.bagsmanager.Model.Brand;
 import com.example.bagsmanager.Model.Color;
 import com.example.bagsmanager.Model.Customer;
 import com.example.bagsmanager.Model.Product;
@@ -68,6 +71,12 @@ public class ProductActivity extends AppCompatActivity {
     ArrayList<Product> products;
     ProductAdapter productAdapter;
 
+    ArrayList<Brand> brr;
+    ArrayList<String> brand= new ArrayList<>();
+
+    ArrayList<Color> coo;
+    ArrayList<String> color= new ArrayList<>();
+
     EditText edtTitle, edtPrice, edtQuantity, edtDescr;
     Spinner spnColor, spnBrand;
 
@@ -79,17 +88,22 @@ public class ProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_product);
         setControl();
+        getBrands();
+        getColors();
         setEvent();
         getProduct(urlProduct);
-
     }
 
     private void setControl() {
         btnThem= findViewById(R.id.btnThem);
         lvlistProduct= findViewById(R.id.lvlistProduct);
         products= new ArrayList<>();
+        brr= new ArrayList<>();
+        coo= new ArrayList<>();
         productAdapter= new ProductAdapter(ProductActivity.this, R.layout.product_item, products);
         lvlistProduct.setAdapter(productAdapter);
+        spnBrand= findViewById(R.id.spnBrand);
+        spnColor= findViewById(R.id.spnColor);
     }
 
     private void setEvent(){
@@ -99,6 +113,64 @@ public class ProductActivity extends AppCompatActivity {
                 addProductdialog();
             }
         });
+
+    }
+
+
+    private void getBrands(){
+        brr.clear();
+        String url="http://10.0.2.2:3000/api/brand";
+        RequestQueue requestQueue= Volley.newRequestQueue(ProductActivity.this);
+        JsonArrayRequest jsonArrayRequest= new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        for(int i=0; i<response.length();i++){
+                            try {
+                                JSONObject k = response.getJSONObject(i);
+                                brr.add(new Brand(k.getInt("idBrand"),k.getString("nameBrand")));
+                                brand.add(k.getString("nameBrand"));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(ProductActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+        requestQueue.add(jsonArrayRequest);
+    }
+
+    private void getColors(){
+        coo.clear();
+        String url="http://10.0.2.2:3000/api/color";
+        RequestQueue requestQueue= Volley.newRequestQueue(ProductActivity.this);
+        JsonArrayRequest jsonArrayRequest= new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        for(int i=0; i<response.length();i++){
+                            try {
+                                JSONObject k = response.getJSONObject(i);
+                                coo.add(new Color(k.getInt("idColor"),k.getString("nameColor")));
+                                color.add(k.getString("nameColor"));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(ProductActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+        requestQueue.add(jsonArrayRequest);
     }
 
     private void getProduct(String url){
@@ -144,21 +216,48 @@ public class ProductActivity extends AppCompatActivity {
         edtDescr= dialogView.findViewById(R.id.edtDescr);
 
 
-        ArrayAdapter<CharSequence> adapter1= ArrayAdapter.createFromResource(this, R.array.color, android.R.layout.simple_spinner_item);
+        ArrayAdapter adapter1= new ArrayAdapter(this,android.R.layout.simple_spinner_item,color);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnColor.setAdapter(adapter1);
 
-        ArrayAdapter<CharSequence> adapter2= ArrayAdapter.createFromResource(this, R.array.brand, android.R.layout.simple_spinner_item);
+        ArrayAdapter adapter2= new ArrayAdapter(this,android.R.layout.simple_spinner_item,brand);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnBrand.setAdapter(adapter2);
+
+        final int[] idColr = new int[1];
+        final int[] idBrnd = new int[1];
+        spnBrand.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(ProductActivity.this, brr.get(i).getIdBrand()+"", Toast.LENGTH_SHORT).show();
+                idBrnd[0] =brr.get(i).getIdBrand();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        spnColor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(ProductActivity.this, coo.get(i).getIdColor()+"", Toast.LENGTH_SHORT).show();
+                idColr[0]= coo.get(i).getIdColor();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         dialogBuilder.setPositiveButton("Lưu", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 String Title= edtTitle.getText().toString().trim();
                 float Price= Float.parseFloat(edtPrice.getText().toString().trim());
-                int idColor = Integer.parseInt(spnColor.getSelectedItem().toString());
-                int idBrand = Integer.parseInt(spnBrand.getSelectedItem().toString());
+                int idColor = idColr[0];
+                int idBrand = idBrnd[0];
                 int Quantity = Integer.parseInt(edtQuantity.getText().toString());
                 String Image = "abcdef";
                 String Descr = edtDescr.getText().toString();
@@ -260,9 +359,23 @@ public class ProductActivity extends AppCompatActivity {
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnColor.setAdapter(adapter1);
 
-        ArrayAdapter<CharSequence> adapter2= ArrayAdapter.createFromResource(this, R.array.brand, android.R.layout.simple_spinner_item);
+        ArrayAdapter adapter2= new ArrayAdapter(this,android.R.layout.simple_spinner_item,brand);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnBrand.setAdapter(adapter2);
+
+        final int[] idBrnd = new int[1];
+        spnBrand.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(ProductActivity.this, brr.get(i).getIdBrand()+"", Toast.LENGTH_SHORT).show();
+                idBrnd[0] =brr.get(i).getIdBrand();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         dialogBuilder.setPositiveButton("Lưu", new DialogInterface.OnClickListener() {
             @Override
@@ -270,7 +383,7 @@ public class ProductActivity extends AppCompatActivity {
                 String Title= edtTitle.getText().toString().trim();
                 float Price= Float.parseFloat(edtPrice.getText().toString().trim());
                 int idColor = Integer.parseInt(spnColor.getSelectedItem().toString());
-                int idBrand = Integer.parseInt(spnBrand.getSelectedItem().toString());
+                int idBrand = idBrnd[0];
                 int Quantity = Integer.parseInt(edtQuantity.getText().toString());
                 String Image = "abcdef";
                 String Descr = edtDescr.getText().toString();

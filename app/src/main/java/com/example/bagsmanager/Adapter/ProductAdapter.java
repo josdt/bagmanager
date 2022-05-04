@@ -62,6 +62,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
         ivXoaProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 ((ProductActivity)context).deleteProductAlret(product.getIdProduct());
             }
         });

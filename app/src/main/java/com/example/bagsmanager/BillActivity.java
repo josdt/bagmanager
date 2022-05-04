@@ -1,7 +1,10 @@
 package com.example.bagsmanager;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -32,13 +35,15 @@ public class BillActivity extends AppCompatActivity {
 
     String urlgetBill= "http://10.0.2.2:3000/api/bill";
 
+    public static int idBill;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_bill);
         setControl();
-        setEvent();
         getBill(urlgetBill);
+        setEvent();
 
     }
 
@@ -50,6 +55,17 @@ public class BillActivity extends AppCompatActivity {
     }
 
     private void setEvent() {
+        lvlistBill.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                idBill= bills.get(i).getIdBill();
+                Intent intent= new Intent(BillActivity.this, DetailBillActivity.class);
+                Bundle bundle= new Bundle();
+                bundle.putInt("idBill", idBill);
+                intent.putExtra("Bill",bundle);
+                startActivity(intent);
+            }
+        });
     }
 
     private void getBill(String url){

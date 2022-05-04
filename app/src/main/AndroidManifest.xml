@@ -24,6 +24,7 @@
         <activity android:name=".ProductActivity"></activity>
         <activity android:name=".CustomerActivity"></activity>
         <activity android:name=".BillActivity"></activity>
+        <activity android:name=".DetailBillActivity"></activity>
         <activity android:name=".StatictisActivity"></activity>
 
     </application>

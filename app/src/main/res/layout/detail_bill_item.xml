@@ -7,8 +7,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -17,11 +16,11 @@
             android:orientation="horizontal">
 
             <TextView
-                style="@style/tvCustomerItem1"
-                android:text="Họ tên:"/>
+                style="@style/tvBillItem1"
+                android:text="Mã sản phẩm:"/>
             <TextView
-                android:id="@+id/tvName"
-                style="@style/tvCustomerItem2"/>
+                android:id="@+id/tvidProduct"
+                style="@style/tvBillItem2"/>
         </LinearLayout>
 
         <LinearLayout
@@ -31,11 +30,11 @@
             android:orientation="horizontal">
 
             <TextView
-                style="@style/tvCustomerItem1"
-                android:text="SĐT:"/>
+                style="@style/tvBillItem1"
+                android:text="Số lượng:"/>
             <TextView
-                android:id="@+id/tvPhone"
-                style="@style/tvCustomerItem2"/>
+                android:id="@+id/tvQuantity"
+                style="@style/tvBillItem2"/>
         </LinearLayout>
 
         <LinearLayout
@@ -45,28 +44,13 @@
             android:orientation="horizontal">
 
             <TextView
-                style="@style/tvCustomerItem1"
-                android:text="Email:"/>
+                style="@style/tvBillItem1"
+                android:text="Đơn giá:"/>
             <TextView
-                android:id="@+id/tvEmail"
-                style="@style/tvCustomerItem2"/>
+                android:id="@+id/tvPrice"
+                style="@style/tvBillItem2"/>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:orientation="horizontal">
-
-            <TextView
-                style="@style/tvCustomerItem1"
-                android:text="Địa chỉ:"/>
-            <TextView
-                android:id="@+id/tvAddress"
-                style="@style/tvCustomerItem2"/>
-        </LinearLayout>
     </LinearLayout>
-    <ImageView
-        android:id="@+id/ivXoaCustomer"
-        style="@style/ivXoa"/>
+
 </LinearLayout>

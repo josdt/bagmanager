@@ -13,28 +13,14 @@
         android:orientation="horizontal">
         <ImageView
             android:id="@+id/ivBack"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:src="@drawable/back"/>
+            style="@style/ivBack"/>
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="5"
+            style="@style/tvTitle"
             android:text="Quản lý sản phẩm"
-            android:textSize="25dp"
-            android:textColor="#4B06C5"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:textAlignment="center"/>
+            />
         <ImageView
             android:id="@+id/ivHome"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:src="@drawable/home"/>
+            style="@style/ivHome"/>
     </LinearLayout>
 
     <ListView
@@ -44,8 +30,5 @@
         android:layout_weight="10"/>
     <Button
         android:id="@+id/btnThem"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:background="@drawable/btnthem" />
+        style="@style/btnThem" />
 </LinearLayout>

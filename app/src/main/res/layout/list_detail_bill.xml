@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     style="@style/view">
+
 
 
     <LinearLayout
@@ -15,7 +16,7 @@
             android:id="@+id/ivBack"
             style="@style/ivBack"/>
         <TextView
-            android:text="Quản lý khách hàng"
+            android:text="CHI TIẾT HÓA ĐƠN"
             style="@style/tvTitle"/>
         <ImageView
             android:id="@+id/ivHome"
@@ -23,8 +24,8 @@
     </LinearLayout>
 
     <ListView
-        android:id="@+id/lvlistCustomer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="10"/>
+        android:id="@+id/lvlistBillDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 </LinearLayout>

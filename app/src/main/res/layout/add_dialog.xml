@@ -12,18 +12,11 @@
         android:gravity="center">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="Tiêu đề sản phẩm:"
-            android:textSize="15dp"
-            android:textStyle="bold"/>
+            android:text="Tiêu đề:"
+            style="@style/tvAddProduct1"/>
         <EditText
             android:id="@+id/edtTitle"
-            android:layout_height="wrap_content"
-            android:layout_width="100dp"
-            android:layout_marginLeft="20dp"
-            android:inputType="text">
+            style="@style/edtAddProductTitlePrice">
         </EditText>
 
     </LinearLayout>
@@ -34,18 +27,11 @@
         android:gravity="center">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
             android:text="Đơn giá:"
-            android:textStyle="bold"
-            android:textSize="15dp"/>
+            style="@style/tvAddProduct1"/>
         <EditText
             android:id="@+id/edtPrice"
-            android:layout_height="wrap_content"
-            android:layout_width="100dp"
-            android:inputType="number"
-            android:layout_marginLeft="20dp">
+            style="@style/edtAddProductTitlePrice">
         </EditText>
 
     </LinearLayout>
@@ -56,12 +42,8 @@
         android:gravity="center">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
             android:text="Màu sắc:"
-            android:textSize="15dp"
-            android:textStyle="bold"/>
+            style="@style/tvAddProduct1"/>
         <Spinner
             android:id="@+id/spnColor"
             android:layout_width="wrap_content"
@@ -76,12 +58,8 @@
         android:gravity="center">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
             android:text="Thương hiệu:"
-            android:textSize="15dp"
-            android:textStyle="bold"/>
+            style="@style/tvAddProduct1"/>
         <Spinner
             android:id="@+id/spnBrand"
             android:layout_width="wrap_content"
@@ -96,18 +74,11 @@
         android:gravity="center">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="Số lượng:"
-            android:textSize="15dp"
-            android:textStyle="bold"/>
+            style="@style/tvAddProduct1"
+            android:text="Số lượng:"/>
         <EditText
             android:id="@+id/edtQuantity"
-            android:layout_height="wrap_content"
-            android:layout_width="100dp"
-            android:inputType="number"
-            android:layout_marginLeft="20dp">
+            style="@style/edtAddProductQuantity">
         </EditText>
 
     </LinearLayout>
@@ -118,12 +89,8 @@
         android:gravity="center">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="Hình ảnh:"
-            android:textSize="15dp"
-            android:textStyle="bold"/>
+            style="@style/tvAddProduct1"
+            android:text="Hình ảnh:"/>
 
 
     </LinearLayout>
@@ -131,23 +98,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginLeft="20dp"
-            android:text="Mô tả:"
-            android:textSize="15dp"
-            android:textStyle="bold"/>
+            style="@style/tvAddProduct1"
+            android:text="Mô tả:"/>
         <EditText
             android:id="@+id/edtDescr"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:inputType="text|textMultiLine"
-            android:gravity="top">
+            style="@style/edtAddProductDescr">
         </EditText>
 
     </LinearLayout>

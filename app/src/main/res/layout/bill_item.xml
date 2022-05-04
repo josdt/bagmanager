@@ -16,16 +16,11 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textColor="@color/black"
+                style="@style/tvBillItem1"
                 android:text="Mã số hóa đơn:"/>
             <TextView
                 android:id="@+id/tvidBill"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:textStyle="italic"/>
+                style="@style/tvBillItem2"/>
         </LinearLayout>
 
         <LinearLayout
@@ -35,16 +30,11 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textColor="@color/black"
+                style="@style/tvBillItem1"
                 android:text="Mã số khách hàng:"/>
             <TextView
                 android:id="@+id/tvidUser"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:textStyle="italic"/>
+                style="@style/tvBillItem2"/>
         </LinearLayout>
 
         <LinearLayout
@@ -54,16 +44,11 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textColor="@color/black"
+                style="@style/tvBillItem1"
                 android:text="Ngày lập:"/>
             <TextView
                 android:id="@+id/tvNgay"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:textStyle="italic"/>
+                style="@style/tvBillItem2"/>
         </LinearLayout>
 
     </LinearLayout>

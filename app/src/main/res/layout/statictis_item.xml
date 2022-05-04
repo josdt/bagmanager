@@ -11,16 +11,11 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textColor="@color/black"
+                style="@style/tvStatictis1"
                 android:text="Tháng:"/>
             <TextView
                 android:id="@+id/tvMonth"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:textStyle="italic"/>
+                style="@style/tvStatictis2"/>
         </LinearLayout>
 
         <LinearLayout
@@ -29,16 +24,11 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textColor="@color/black"
+                style="@style/tvStatictis1"
                 android:text="Doanh thu:"/>
             <TextView
                 android:id="@+id/tvTurnover"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:textStyle="italic"/>
+                style="@style/tvStatictis2"/>
         </LinearLayout>
 
 </LinearLayout>
