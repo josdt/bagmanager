@@ -6,22 +6,22 @@
     android:background="@drawable/backgoundcommon">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:weightSum="7"
-        android:orientation="horizontal">
-        <ImageView
-            android:id="@+id/ivBack"
-            style="@style/ivBack"/>
-        <TextView
-            style="@style/tvTitle"
-            android:text="Quản lý sản phẩm"
-            />
-        <ImageView
-            android:id="@+id/ivHome"
-            style="@style/ivHome"/>
-    </LinearLayout>
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:weightSum="7"-->
+<!--        android:orientation="horizontal">-->
+<!--        <ImageView-->
+<!--            android:id="@+id/ivBack"-->
+<!--            style="@style/ivBack"/>-->
+<!--        <TextView-->
+<!--            style="@style/tvTitle"-->
+<!--            android:text="Quản lý sản phẩm"-->
+<!--            />-->
+<!--        <ImageView-->
+<!--            android:id="@+id/ivHome"-->
+<!--            style="@style/ivHome"/>-->
+<!--    </LinearLayout>-->
 
     <ListView
         android:id="@+id/lvlistProduct"

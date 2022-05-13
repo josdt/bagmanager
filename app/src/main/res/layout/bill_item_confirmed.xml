@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/tvBillItem1"
+                android:text="Mã số hóa đơn:"/>
+            <TextView
+                android:id="@+id/tvidBilled"
+                style="@style/tvBillItem2"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/tvBillItem1"
+                android:text="Mã số khách hàng:"/>
+            <TextView
+                android:id="@+id/tvidUsered"
+                style="@style/tvBillItem2"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/tvBillItem1"
+                android:text="Ngày lập:"/>
+            <TextView
+                android:id="@+id/tvNgayed"
+                style="@style/tvBillItem2"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

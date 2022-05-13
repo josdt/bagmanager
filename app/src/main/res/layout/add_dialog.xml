@@ -91,6 +91,25 @@
         <TextView
             style="@style/tvAddProduct1"
             android:text="Hình ảnh:"/>
+        <ImageButton
+            android:id="@+id/ibUploadImage"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/uploadimage"/>
+        <ImageView
+            android:id="@+id/ivUploadImage"
+            android:layout_marginLeft="10dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+        <TextView
+            android:id="@+id/tvNotification"
+            android:hint="Chưa có hình ảnh nào!"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:textSize="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
 
     </LinearLayout>

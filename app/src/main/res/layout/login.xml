@@ -33,13 +33,14 @@
             style="@style/ivPassword"/>
         <EditText
             android:id="@+id/edtPassword"
+            android:inputType="textPassword"
             style="@style/edtPassword"/>
 
     </LinearLayout>
     
     <Button
         android:id="@+id/btnLogin"
-        style="@style/btnLogin"/>
+        style="@style/button"/>
 
     <TextView
         style="@style/tvSlogan1"/>

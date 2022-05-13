@@ -1,10 +1,15 @@
 package com.example.bagsmanager;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
@@ -34,6 +39,7 @@ public class DetailBillActivity extends AppCompatActivity {
     protected void onCreate(Bundle saveInstanceState){
         super.onCreate(saveInstanceState);
         setContentView(R.layout.list_detail_bill);
+        setActionBar();
         Intent intent= getIntent();
         Bundle bundle=intent.getBundleExtra("Bill");
         idBill=bundle.getInt("idBill");
@@ -50,6 +56,49 @@ public class DetailBillActivity extends AppCompatActivity {
     }
     private void setEvent(){
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menuaction,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public  boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            case  R.id.mnHome:
+                startActivity(new Intent(DetailBillActivity.this, HomeActivity.class));
+                break;
+            case  R.id.mnProduct:
+                startActivity(new Intent(DetailBillActivity.this, ProductActivity.class));
+                break;
+            case  R.id.mnCustomer:
+                startActivity(new Intent(DetailBillActivity.this, CustomerActivity.class));
+                break;
+            case  R.id.mnCustomerlock:
+                startActivity(new Intent(DetailBillActivity.this, CustomerLockActivity.class));
+                break;
+            case  R.id.mnBill:
+                onBackPressed();
+                return true;
+            case  R.id.mnBilled:
+                onBackPressed();
+                return true;
+            case  R.id.mnStatictis:
+                startActivity(new Intent(DetailBillActivity.this, StatictisActivity.class));
+                break;
+            default:break;
+        }
+        return  super.onOptionsItemSelected(item);
+    }
+    private void setActionBar(){
+        ActionBar actionBar= getSupportActionBar();
+        actionBar.setTitle("CHI TIẾT HÓA ĐƠN");
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FFE4E1")));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
     private void getDetailBill(String url){
         RequestQueue requestQueue= Volley.newRequestQueue(DetailBillActivity.this);

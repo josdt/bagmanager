@@ -67,6 +67,6 @@
         </LinearLayout>
     </LinearLayout>
     <ImageView
-        android:id="@+id/ivXoaCustomer"
-        style="@style/ivXoa"/>
+        android:id="@+id/ivLock"
+        style="@style/ivLock"/>
 </LinearLayout>

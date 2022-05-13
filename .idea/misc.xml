@@ -3,21 +3,37 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/drawable/button_disabled.xml" value="0.2295" />
+        <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/drawable/button_enabled.xml" value="0.2295" />
+        <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/drawable/button_focused.xml" value="0.2295" />
+        <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/drawable/button_pressed.xml" value="0.2295" />
+        <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/drawable/custombutton.xml" value="0.116" />
         <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
         <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/add_dialog.xml" value="0.4" />
         <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/bill_detail.xml" value="0.259375" />
         <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/bill_detail_item.xml" value="0.259375" />
         <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/bill_item.xml" value="0.264" />
+        <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/bill_item_confirmed.xml" value="0.259375" />
+        <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/bill_item_unconfirm.xml" value="0.264" />
+        <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/changepass_dialog.xml" value="0.259375" />
         <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/customer_item.xml" value="0.264" />
+        <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/customer_item_lock.xml" value="0.259375" />
         <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/detail_bill_item.xml" value="0.259375" />
-        <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/homepage.xml" value="0.2" />
+        <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/homepage.xml" value="0.264" />
         <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/list_bill.xml" value="0.259375" />
+        <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/list_billed.xml" value="0.259375" />
         <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/list_customer.xml" value="0.22826086956521738" />
+        <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/list_customer_lock.xml" value="0.259375" />
+        <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/list_detail_bill.xml" value="0.259375" />
         <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/list_product.xml" value="0.2" />
         <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/login.xml" value="0.2" />
+        <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/menu_item.xml" value="0.1" />
         <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/product_item.xml" value="0.4" />
+        <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/simple_spinner_dropdown_item.xml" value="0.259375" />
+        <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/simple_spinner_item.xml" value="0.259375" />
         <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/statictis.xml" value="0.259375" />
         <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/layout/statictis_item.xml" value="0.259375" />
+        <entry key="..\:/Study/Y4-S2/mobile/bagsmanager/app/src/main/res/menu/menuaction.xml" value="0.1" />
       </map>
     </option>
   </component>

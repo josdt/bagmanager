@@ -27,7 +27,7 @@ import java.io.UnsupportedEncodingException;
 public class LoginActivity extends AppCompatActivity {
     EditText edtUser, edtPassword;
     Button btnLogin;
-    public static Customer customerlogin;
+    Customer customerlogin;
 
     String urllogin="http://10.0.2.2:3000/api/customer/login";
 
@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+//        getSupportActionBar().hide();
         setControl();
         setEvent();
     }
@@ -52,22 +53,17 @@ public class LoginActivity extends AppCompatActivity {
                 String user= edtUser.getText().toString().trim();
                 String pass= edtPassword.getText().toString().trim();
                 try {
-                    login(urllogin,user,pass);
-                    Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-
+                    login(urllogin, user, pass);
                 } catch (JSONException  e) {
                     e.printStackTrace();
-                    Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Lỗi"+e, Toast.LENGTH_SHORT).show();
                 }
-                Intent intent= new Intent(LoginActivity.this,HomeActivity.class);
-                startActivity(intent);
             }
         });
     }
 
     private void login(String url , String username, String password ) throws JSONException {
         RequestQueue mRequestQueue = Volley.newRequestQueue(LoginActivity.this);
-
         JSONObject jsonbody = new JSONObject();
         jsonbody.put("username", username);
         jsonbody.put("password", password);
@@ -77,20 +73,29 @@ public class LoginActivity extends AppCompatActivity {
                 new com.android.volley.Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        for(int i=0; i<response.length();i++){
+                        if(response.length()==0){
+                            Toast.makeText(LoginActivity.this, "Sai thông tin đăng nhập!", Toast.LENGTH_SHORT).show();
+                        }else{
                             try {
-                                JSONObject k= response.getJSONObject(i);
-                                customerlogin = new Customer(k.getInt("idUser"), k.getInt("idRole"),k.getString("username"),
-                                        k.getString("password"),k.getString("addressCustomer"),k.getString("email"),
-                                        k.getString("phone"),k.getJSONObject("sex").getJSONArray("data").getInt(0),
-                                        k.getString("name"));
-
+                                JSONObject k = response.getJSONObject(0);
+                                if(k.getInt("idRole")==1){
+                                    customerlogin= new Customer(k.getInt("idUser"),k.getInt("idRole"),k.getString("username"),
+                                            k.getString("password"), k.getString("addressCustomer"),k.getString("email"),
+                                            k.getString("phone"),k.getInt("sex"), k.getString("name"));
+                                    Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                    intent.putExtra("customerLogin", customerlogin);
+                                    startActivity(intent);
+                                }else{
+                                    Toast.makeText(LoginActivity.this, "Đăng nhập thất bại!", Toast.LENGTH_SHORT).show();
+                                }
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         }
                     }
                 },
+//                k.getJSONObject("sex").getJSONArray("data").getInt(0)
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
@@ -98,21 +103,22 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 }
 
-        ){
+        ) {
             @Override
-            public String getBodyContentType(){
+            public String getBodyContentType() {
                 return "application/json; charset=utf-8";
             }
 
             @Override
             public byte[] getBody() {
                 try {
-                    return requestbody== null ? null : requestbody.getBytes("utf-8");
+                    return requestbody == null ? null : requestbody.getBytes("utf-8");
                 } catch (UnsupportedEncodingException e) {
-                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestbody,"utf-8");
+                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestbody, "utf-8");
                     return null;
                 }
-            }};
+            }
+        };
         mRequestQueue.add(jsonArrayRequest);
     }
 

@@ -48,7 +48,7 @@ public class CustomerAdapter extends ArrayAdapter<Customer> {
         TextView tvPhone= convertView.findViewById(R.id.tvPhone);
         TextView tvEmail= convertView.findViewById(R.id.tvEmail);
         TextView tvAddress= convertView.findViewById(R.id.tvAddress);
-        ImageView ivXoa= convertView.findViewById(R.id.ivXoaCustomer);
+        ImageView ivLock= convertView.findViewById(R.id.ivLock);
 
         Customer customer = customers.get(position);
 
@@ -57,10 +57,10 @@ public class CustomerAdapter extends ArrayAdapter<Customer> {
         tvEmail.setText(customer.getEmail());
         tvAddress.setText(customer.getAddressCustommer());
 
-        ivXoa.setOnClickListener(new View.OnClickListener() {
+        ivLock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((CustomerActivity)context).deleteCustomer(customer.getIdUser());
+                ((CustomerActivity)context).lockCustomer(customer.getIdUser());
             }
         });
 

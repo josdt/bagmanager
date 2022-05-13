@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/mnHome"
+        android:title="Trang chủ"
+        android:icon="@drawable/homemenu"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/mnProduct"
+        android:title="Sản phẩm"
+        android:icon="@drawable/product"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/mnCustomer"
+        android:title="Khách hàng"
+        android:icon="@drawable/guest"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/mnCustomerlock"
+        android:title="Danh sách đen"
+        android:icon="@drawable/lockcus"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/mnBill"
+        android:title="Hóa đơn đang chờ"
+        android:icon="@drawable/bill"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/mnBilled"
+        android:title="Hóa đơn hoàn thành"
+        android:icon="@drawable/billed"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/mnStatictis"
+        android:title="Thống kê"
+        android:icon="@drawable/chart"
+        app:showAsAction="never"/>
+</menu>

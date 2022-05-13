@@ -1,6 +1,8 @@
 package com.example.bagsmanager.Model;
 
-public class Customer {
+import java.io.Serializable;
+
+public class Customer implements Serializable {
     int idUser;
     int idRole;
     String username;
@@ -10,6 +12,9 @@ public class Customer {
     String phone;
     int sex;
     String name;
+
+    public Customer() {
+    }
 
     public Customer(int idUser, int idRole, String username, String password, String addressCustommer, String email, String phone, int sex, String name) {
         this.idUser = idUser;
