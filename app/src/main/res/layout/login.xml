@@ -9,6 +9,7 @@
     style="@style/view">
 
     <ImageView
+        android:id="@+id/logooooo"
         style="@style/ivLogo"/>
 
     <LinearLayout

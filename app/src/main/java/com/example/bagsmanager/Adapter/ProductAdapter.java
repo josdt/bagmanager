@@ -1,6 +1,8 @@
 package com.example.bagsmanager.Adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.bagsmanager.ImageUtil;
 import com.example.bagsmanager.Model.Product;
 import com.example.bagsmanager.ProductActivity;
 import com.example.bagsmanager.R;
@@ -40,6 +43,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent){
        convertView= LayoutInflater.from(context).inflate(resource, null);
 
+       ImageView ivProduct= convertView.findViewById(R.id.ivProduct);
        TextView tvTitle= convertView.findViewById(R.id.tvTitle);
        TextView tvPrice= convertView.findViewById(R.id.tvPrice);
        TextView tvNumber= convertView.findViewById(R.id.tvNumber);
@@ -48,6 +52,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
 
         Product product= products.get(position);
 
+        ivProduct.setImageBitmap(ImageUtil.convert(product.getImage()));
         tvTitle.setText(product.getTitle());
         tvPrice.setText(String.valueOf(product.getPrice()));
         tvNumber.setText(String.valueOf(product.getQuantity()));

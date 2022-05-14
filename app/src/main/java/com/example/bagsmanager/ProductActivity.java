@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -57,6 +58,8 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 
+import java.nio.ByteBuffer;
+import java.nio.IntBuffer;
 import java.util.ArrayList;
 
 
@@ -79,6 +82,7 @@ public class ProductActivity extends AppCompatActivity {
     ImageButton ibUploadImage;
     ImageView ivUploadImage;
     TextView tvNotification;
+    String hinhanh;
     int REQUEST_CODE_IMAGE = 123;
     public static String urri;
 
@@ -232,6 +236,7 @@ public class ProductActivity extends AppCompatActivity {
                                 products.add(new Product(k.getInt("idProduct"), k.getInt("price"), k.getString("descr"),
                                         k.getString("title"), k.getInt("idColor"), k.getInt("idBrand"), k.getString("image"),
                                         k.getInt("quantity")));
+//
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -317,21 +322,19 @@ public class ProductActivity extends AppCompatActivity {
                 int idColor = idColr[0];
                 int idBrand = idBrnd[0];
                 int Quantity = Integer.parseInt(edtQuantity.getText().toString());
-                String Image = "abcdef";
                 String Descr = edtDescr.getText().toString();
 
                 //uploadImage
 
 
-//                try {
-//                    addProduct(urlProduct,Price,Descr,Title,idColor,idBrand,Image,Quantity);
-//                    Toast.makeText(ProductActivity.this, "Thêm thành công",Toast.LENGTH_SHORT).show();
-//                }
-//                catch (Exception e){
-//                    Toast.makeText(ProductActivity.this, "Thêm thất bại",Toast.LENGTH_SHORT).show();
-//                }
-//                getProduct(urlProduct);
-//                dialogInterface.cancel();
+                try {
+                    addProduct(urlProduct,Price,Descr,Title,idColor,idBrand,hinhanh,Quantity);
+                }
+                catch (Exception e){
+                    Toast.makeText(ProductActivity.this, "Thêm thất bại",Toast.LENGTH_SHORT).show();
+                }
+                getProduct(urlProduct);
+                dialogInterface.cancel();
 
             }
         });
@@ -364,13 +367,13 @@ public class ProductActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
+                        Toast.makeText(ProductActivity.this,response.toString(), Toast.LENGTH_SHORT).show();
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        Toast.makeText(ProductActivity.this,"lỗi"+error, Toast.LENGTH_LONG).show();
                     }
                 }) {
             @Override
@@ -615,8 +618,9 @@ public class ProductActivity extends AppCompatActivity {
                 InputStream inputStream =  getContentResolver().openInputStream(uri);
                 Bitmap bitmap= BitmapFactory.decodeStream(inputStream);
                 ivUploadImage.setImageBitmap(bitmap);
-                String aa = getStringImage(bitmap);
-                Toast.makeText(ProductActivity.this,aa, Toast.LENGTH_SHORT).show();
+                hinhanh= ImageUtil.convert(bitmap);
+//                Bitmap bitmap1= ImageUtil.convert(hinhanh);
+//                ivUploadImage.setImageBitmap(bitmap1);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -624,13 +628,8 @@ public class ProductActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    public String getStringImage(Bitmap bmp) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        byte[] imageBytes = baos.toByteArray();
-        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-        return encodedImage;
-    }
+
+
 
 
 }

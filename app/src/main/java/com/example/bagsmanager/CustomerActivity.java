@@ -124,6 +124,7 @@ public class CustomerActivity extends AppCompatActivity {
     private void setControl() {
         lvlistCustomer= findViewById(R.id.lvlistCustomer);
         customers= new ArrayList<>();
+        customers1= new ArrayList<>();
         customerAdapter= new CustomerAdapter(CustomerActivity.this,R.layout.customer_item, customers);
         lvlistCustomer.setAdapter(customerAdapter);
     }
@@ -210,7 +211,7 @@ public class CustomerActivity extends AppCompatActivity {
         document.setMargins(12, 12, 12, 12);
 
         Paragraph Title = new Paragraph("Danh sach khach hang").setBold().setFontSize(20).setTextAlignment(TextAlignment.CENTER);
-        float[] width = {10f, 30f, 10f};
+        float[] width = {5,5,10,20};
         Table table = new Table(width);
         table.setHorizontalAlignment(HorizontalAlignment.CENTER);
         table.setVerticalAlignment(VerticalAlignment.MIDDLE);
@@ -234,19 +235,20 @@ public class CustomerActivity extends AppCompatActivity {
                                         k.getString("password"), k.getString("addressCustomer"),k.getString("email"),
                                         k.getString("phone"),k.getInt("sex"), k.getString("name")));
 
+
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-
-                            for(Customer k: customers1){
-                                table.addCell(new Cell().add(new Paragraph(k.getName()+"")));
-                                table.addCell(new Cell().add(new Paragraph(k.getPhone()+"")));
-                                table.addCell(new Cell().add(new Paragraph(k.getEmail()+"")));
-                                table.addCell(new Cell().add(new Paragraph(k.getAddressCustommer()+"")));
-                            }
-
                         }
-                        customerAdapter.notifyDataSetChanged();
+                        for(Customer j: customers1){
+                            table.addCell(new Cell().add(new Paragraph(j.getName()+"")));
+                            table.addCell(new Cell().add(new Paragraph(j.getPhone()+"")));
+                            table.addCell(new Cell().add(new Paragraph(j.getEmail()+"")));
+                            table.addCell(new Cell().add(new Paragraph(j.getAddressCustommer()+"")));
+                        }
+                        document.add(Title);
+                        document.add(table);
+                        document.close();
                         Toast.makeText(CustomerActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
                     }
                 },
@@ -257,10 +259,6 @@ public class CustomerActivity extends AppCompatActivity {
                     }
                 });
         requestQueue.add(jsonArrayRequest);
-
-        document.add(Title);
-        document.add(table);
-        document.close();
         Toast.makeText(this, "Đã tạo file pdf", Toast.LENGTH_SHORT).show();
     }
 

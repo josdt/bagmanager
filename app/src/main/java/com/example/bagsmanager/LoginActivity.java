@@ -3,10 +3,13 @@ package com.example.bagsmanager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -29,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     Button btnLogin;
     Customer customerlogin;
 
+
     String urllogin="http://10.0.2.2:3000/api/customer/login";
 
     @Override
@@ -36,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 //        getSupportActionBar().hide();
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.test);
         setControl();
         setEvent();
     }
