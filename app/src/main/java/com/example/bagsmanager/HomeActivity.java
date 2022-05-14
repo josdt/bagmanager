@@ -3,6 +3,7 @@ package com.example.bagsmanager;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -304,12 +305,12 @@ public class HomeActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(HomeActivity.this, "Sửa thành công", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HomeActivity.this, "Đổi mật khẩu thành công", Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(HomeActivity.this, "Sửa thất bại", Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomeActivity.this, "Đổi mật khẩu thất bại", Toast.LENGTH_SHORT).show();
             }
         }){
             @Override

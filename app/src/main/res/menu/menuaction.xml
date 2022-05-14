@@ -36,4 +36,9 @@
         android:title="Thống kê"
         android:icon="@drawable/chart"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/mnPdf"
+        android:title="Xuất pdf"
+        android:icon="@drawable/uploadimage"
+        app:showAsAction="never"/>
 </menu>

@@ -146,6 +146,7 @@ public class CustomerLockActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(String response) {
                                 Toast.makeText(CustomerLockActivity.this, "Mở khóa thành công", Toast.LENGTH_SHORT).show();
+                                getCustomer(urlgetCustomerLock);
                             }
                         }, new Response.ErrorListener() {
                     @Override
@@ -154,8 +155,8 @@ public class CustomerLockActivity extends AppCompatActivity {
                     }
                 });
                 mRequestQueue.add(stringRequest);
-                getCustomer(urlgetCustomerLock);
                 dialogInterface.cancel();
+
             }
         });
         b.setNegativeButton("Không", new DialogInterface.OnClickListener() {

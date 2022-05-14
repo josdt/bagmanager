@@ -21,9 +21,8 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="#FF6398"
                 android:layoutDirection="rtl"
-                app:title=" "
-                app:titleTextColor="@color/black"
-                android:gravity=""
+                app:title="QUẢN LÝ BÁN HÀNG"
+                app:titleTextColor="#000000"
                 android:id="@+id/toolBar"/>
 
             <TextView
@@ -32,8 +31,9 @@
                 android:text="THÔNG TIN CÁ NHÂN"
                 android:layout_gravity="center"
                 android:textColor="@color/black"
+                android:layout_marginTop="20dp"
                 android:textStyle="bold"
-                android:textSize="30dp"/>
+                android:textSize="20dp"/>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
                 <TextView
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
-                    android:text="Tên:"
+                    android:text="Họ tên:"
                     android:textColor="@color/black"
                     android:textSize="20dp"/>
                 <EditText
@@ -108,15 +108,15 @@
             </LinearLayout>
             <Button
                 android:id="@+id/btnUpdateInfor"
-                android:layout_width="150dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="40dp"
                 android:background="#FF3177"
                 android:text="cập nhật"/>
             <Button
                 android:id="@+id/btnChangePass"
-                android:layout_width="150dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"

@@ -46,7 +46,7 @@ public class StatictisActivity extends AppCompatActivity {
     StatictisAdapter statictisAdapter;
     ArrayList<Statictis> statictiss;
     String urlgetStatictis="http://10.0.2.2:3000/api/bill/statistic_revenue";
-    ArrayList<Integer> years;
+    ArrayList<Integer> years= new ArrayList<>();
 
     BarChart bchart;
     HashMap<String,Float> map;
@@ -58,9 +58,9 @@ public class StatictisActivity extends AppCompatActivity {
         setContentView(R.layout.statictis);
         setActionBar();
         setControl();
-        setEvent();
         getYear();
-        setSpinerOption();
+        setEvent();
+//        setSpinerOption();
 
 
     }
@@ -80,7 +80,6 @@ public class StatictisActivity extends AppCompatActivity {
         tabSpec2.setIndicator("Biểu đồ");
         tabHost.addTab(tabSpec2);
 
-        years= new ArrayList<>();
 
         statictiss= new ArrayList<>(12);
         statictisAdapter= new StatictisAdapter(this, R.layout.statictis_item, statictiss);
@@ -148,7 +147,8 @@ public class StatictisActivity extends AppCompatActivity {
                         for(int i=0; i<response.length();i++){
                             try {
                                 JSONObject k = response.getJSONObject(i);
-                                years.add(k.getInt(""));
+                                years.add(k.getInt("year"));
+                                setSpinerOption();
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -168,13 +168,18 @@ public class StatictisActivity extends AppCompatActivity {
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item,years);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnYear.setAdapter(adapter);
+
+        final int[] year = new int[1];
+
         spnYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                getStatictis(years.get(i));
+                year[0]= years.get(i);
+                Toast.makeText(StatictisActivity.this,year[0]+"", Toast.LENGTH_SHORT).show();
+                getStatictis(year[0]);
 //                getDataBChart();
 //                setBarChart();
-//                Toast.makeText(StatictisActivity.this,years.get(i)+"", Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
