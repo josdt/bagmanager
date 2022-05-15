@@ -201,7 +201,7 @@
     </style>
     <style name="edtAddProductDescr">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">150dp</item>
+        <item name="android:layout_height">100dp</item>
         <item name="android:inputType">text|textMultiLine</item>
         <item name="android:gravity">top</item>
     </style>

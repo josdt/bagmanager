@@ -5,6 +5,15 @@
     android:layout_width="match_parent"
     android:background="#F4E2E8"
     android:paddingTop="10dp">
+
+    <TextView
+        android:id="@+id/tvTitleDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:layout_gravity="center"
+        android:text="aaaaaa"
+        android:textSize="25dp"/>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,7 +40,8 @@
             style="@style/tvAddProduct1"/>
         <EditText
             android:id="@+id/edtPrice"
-            style="@style/edtAddProductTitlePrice">
+            style="@style/edtAddProductTitlePrice"
+            android:inputType="number">
         </EditText>
 
     </LinearLayout>
@@ -127,6 +137,24 @@
             style="@style/edtAddProductDescr">
         </EditText>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
+            android:text="Hủy"/>
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lưu"/>
     </LinearLayout>
 
 

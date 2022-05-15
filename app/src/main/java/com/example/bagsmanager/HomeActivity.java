@@ -56,7 +56,7 @@ public class HomeActivity extends AppCompatActivity {
     EditText edtName, edtAddress, edtEmail, edtPhone;
     ImageView ivProductManager, ivCustomerManager,ivBillManager, ivStatistics, ivExit;
     Button btnUpdateInfor, btnChangePass;
-    String urlCus="http://10.0.2.2:3000/api/customer";
+    String urlCus="http://192.168.1.10:3000/api/customer";
     int idcus;
     String username;
 
@@ -248,7 +248,7 @@ public class HomeActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         final String requestbody = jsonbody.toString();
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, "http://10.0.2.2:3000/api/customer/login", null,
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, "http://192.168.1.7:3000/api/customer/login", null,
                 new com.android.volley.Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
@@ -301,7 +301,7 @@ public class HomeActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         final String requestbody= jsonbody.toString();
-        StringRequest stringRequest= new StringRequest(Request.Method.PUT, "http://10.0.2.2:3000/api/customer/change_pass",
+        StringRequest stringRequest= new StringRequest(Request.Method.PUT, "http://192.168.1.7:3000/api/customer/change_pass",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

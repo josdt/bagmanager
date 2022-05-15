@@ -52,23 +52,17 @@ public class ProductAdapter extends ArrayAdapter<Product> {
 
         Product product= products.get(position);
 
-        ivProduct.setImageBitmap(ImageUtil.convert(product.getImage()));
+//        ivProduct.setImageBitmap(ImageUtil.convert(product.getImage()));
         tvTitle.setText(product.getTitle());
         tvPrice.setText(String.valueOf(product.getPrice()));
         tvNumber.setText(String.valueOf(product.getQuantity()));
 
-        ivSua.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
 
         ivXoaProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                ((ProductActivity)context).deleteProductAlret(product.getIdProduct());
+                ((ProductActivity)context).checkdeleteProduct(product.getIdProduct());
             }
         });
         ivSua.setOnClickListener(new View.OnClickListener() {

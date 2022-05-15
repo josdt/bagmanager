@@ -45,7 +45,7 @@ public class StatictisActivity extends AppCompatActivity {
     TabHost tabHost;
     StatictisAdapter statictisAdapter;
     ArrayList<Statictis> statictiss;
-    String urlgetStatictis="http://10.0.2.2:3000/api/bill/statistic_revenue";
+    String urlgetStatictis="http://192.168.1.10:3000/api/bill/statistic_revenue";
     ArrayList<Integer> years= new ArrayList<>();
 
     BarChart bchart;
@@ -138,7 +138,7 @@ public class StatictisActivity extends AppCompatActivity {
 
     private void getYear(){
         years.clear();
-        String url="http://10.0.2.2:3000/api/bill/year_bill";
+        String url="http://192.168.1.10:3000/api/bill/year_bill";
         RequestQueue requestQueue= Volley.newRequestQueue(StatictisActivity.this);
         JsonArrayRequest jsonArrayRequest= new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {

@@ -1,6 +1,7 @@
 package com.example.bagsmanager;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -76,8 +77,10 @@ public class ProductActivity extends AppCompatActivity {
     ArrayList<Color> coo;
     ArrayList<String> color= new ArrayList<>();
 
-    EditText edtTitle, edtPrice, edtQuantity, edtDescr;
+    TextView tvTitleDialog,tvTitleDialog1;
+    EditText edtTitle, edtPrice, edtQuantity, edtDescr,edtTitle1, edtPrice1, edtQuantity1, edtDescr1;
     Spinner spnColor, spnBrand;
+    Button btnCancel, btnSave;
 
     ImageButton ibUploadImage;
     ImageView ivUploadImage;
@@ -88,7 +91,7 @@ public class ProductActivity extends AppCompatActivity {
 
 
 
-    String urlProduct="http://10.0.2.2:3000/api/product";
+    String urlProduct="http://192.168.1.10:3000/api/product";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -169,7 +172,7 @@ public class ProductActivity extends AppCompatActivity {
 
     private void getBrands(){
         brr.clear();
-        String url="http://10.0.2.2:3000/api/brand";
+        String url="http://192.168.1.10:3000/api/brand";
         RequestQueue requestQueue= Volley.newRequestQueue(ProductActivity.this);
         JsonArrayRequest jsonArrayRequest= new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
@@ -197,7 +200,7 @@ public class ProductActivity extends AppCompatActivity {
 
     private void getColors(){
         coo.clear();
-        String url="http://10.0.2.2:3000/api/color";
+        String url="http://192.168.1.10:3000/api/color";
         RequestQueue requestQueue= Volley.newRequestQueue(ProductActivity.this);
         JsonArrayRequest jsonArrayRequest= new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
@@ -256,19 +259,26 @@ public class ProductActivity extends AppCompatActivity {
     }
 
     private void addProductdialog(){
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(ProductActivity.this);
-        LayoutInflater inflater = this.getLayoutInflater();
-        @SuppressLint("ResourceType") View dialogView = inflater.inflate(R.layout.add_dialog,(ViewGroup) findViewById(R.layout.list_product));
-        edtTitle= dialogView.findViewById(R.id.edtTitle);
-        edtPrice= dialogView.findViewById(R.id.edtPrice);
-        spnColor= dialogView.findViewById(R.id.spnColor);
-        spnBrand= dialogView.findViewById(R.id.spnBrand);
-        edtQuantity= dialogView.findViewById(R.id.edtQuantity);
-        edtDescr= dialogView.findViewById(R.id.edtDescr);
+//        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(ProductActivity.this);
+//        LayoutInflater inflater = this.getLayoutInflater();
+//        @SuppressLint("ResourceType") View dialogView = inflater.inflate(R.layout.add_dialog,(ViewGroup) findViewById(R.layout.list_product));
 
-        ibUploadImage= dialogView.findViewById(R.id.ibUploadImage);
-        ivUploadImage= dialogView.findViewById(R.id.ivUploadImage);
-        tvNotification= dialogView.findViewById(R.id.tvNotification);
+        Dialog dialog= new Dialog(ProductActivity.this);
+        dialog.setContentView(R.layout.add_dialog);
+        tvTitleDialog= dialog.findViewById(R.id.tvTitleDialog);
+        tvTitleDialog.setText("THÊM SẢN PHẨM");
+        edtTitle= dialog.findViewById(R.id.edtTitle);
+        edtPrice= dialog.findViewById(R.id.edtPrice);
+        spnColor= dialog.findViewById(R.id.spnColor);
+        spnBrand= dialog.findViewById(R.id.spnBrand);
+        edtQuantity= dialog.findViewById(R.id.edtQuantity);
+        edtDescr= dialog.findViewById(R.id.edtDescr);
+
+        ibUploadImage= dialog.findViewById(R.id.ibUploadImage);
+        ivUploadImage= dialog.findViewById(R.id.ivUploadImage);
+        tvNotification= dialog.findViewById(R.id.tvNotification);
+        btnCancel= dialog.findViewById(R.id.btnCancel);
+        btnSave= dialog.findViewById(R.id.btnSave);
 
 
         ArrayAdapter adapter1= new ArrayAdapter(this,android.R.layout.simple_spinner_item,color);
@@ -314,9 +324,9 @@ public class ProductActivity extends AppCompatActivity {
             }
         });
 
-        dialogBuilder.setPositiveButton("Lưu", new DialogInterface.OnClickListener() {
+        btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
+            public void onClick(View view) {
                 String Title= edtTitle.getText().toString().trim();
                 float Price= Float.parseFloat(edtPrice.getText().toString().trim());
                 int idColor = idColr[0];
@@ -324,31 +334,57 @@ public class ProductActivity extends AppCompatActivity {
                 int Quantity = Integer.parseInt(edtQuantity.getText().toString());
                 String Descr = edtDescr.getText().toString();
 
-                //uploadImage
-
-
                 try {
                     addProduct(urlProduct,Price,Descr,Title,idColor,idBrand,hinhanh,Quantity);
+
                 }
                 catch (Exception e){
                     Toast.makeText(ProductActivity.this, "Thêm thất bại",Toast.LENGTH_SHORT).show();
                 }
                 getProduct(urlProduct);
-                dialogInterface.cancel();
+                dialog.dismiss();
 
             }
         });
-        dialogBuilder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+        btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
+            public void onClick(View view) {
+                dialog.dismiss();
             }
         });
+//        dialogBuilder.setPositiveButton("Lưu", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//                String Title= edtTitle.getText().toString().trim();
+//                float Price= Float.parseFloat(edtPrice.getText().toString().trim());
+//                int idColor = idColr[0];
+//                int idBrand = idBrnd[0];
+//                int Quantity = Integer.parseInt(edtQuantity.getText().toString());
+//                String Descr = edtDescr.getText().toString();
+//
+//                validate(Title, Price, Quantity,Descr, hinhanh);
+//                try {
+//                    addProduct(urlProduct,Price,Descr,Title,idColor,idBrand,hinhanh,Quantity);
+//                    getProduct(urlProduct);
+//                    dialogInterface.cancel();
+//                }
+//                catch (Exception e){
+//                    Toast.makeText(ProductActivity.this, "Thêm thất bại",Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+//        dialogBuilder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//                dialogInterface.dismiss();
+//            }
+//        });
 
-        dialogBuilder.setView(dialogView);
-        dialogBuilder.setTitle("THÊM SẢN PHẨM");
-        AlertDialog a = dialogBuilder.create();
-        a.show();
+        dialog.show();
+//        dialogBuilder.setView(dialogView);
+//        dialogBuilder.setTitle("THÊM SẢN PHẨM");
+//        AlertDialog a = dialogBuilder.create();
+//        a.show();
     }
 
     private void addProduct(String url ,float Price,String Descr,String Title,int idColor,int idBrand,String Image,int Quantity ) throws JSONException {
@@ -396,20 +432,31 @@ public class ProductActivity extends AppCompatActivity {
 
 
     public void modifyProductDialog(Product product){
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(ProductActivity.this);
-        LayoutInflater inflater = this.getLayoutInflater();
-        @SuppressLint("ResourceType") View dialogView = inflater.inflate(R.layout.add_dialog,(ViewGroup) findViewById(R.layout.list_product));
-        edtTitle= dialogView.findViewById(R.id.edtTitle);
-        edtPrice= dialogView.findViewById(R.id.edtPrice);
-        spnColor= dialogView.findViewById(R.id.spnColor);
-        spnBrand= dialogView.findViewById(R.id.spnBrand);
-        edtQuantity= dialogView.findViewById(R.id.edtQuantity);
-        edtDescr= dialogView.findViewById(R.id.edtDescr);
+//        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(ProductActivity.this);
+//        LayoutInflater inflater = this.getLayoutInflater();
+//        @SuppressLint("ResourceType") View dialogView = inflater.inflate(R.layout.add_dialog,(ViewGroup) findViewById(R.layout.list_product));
+
+        Dialog dialog1= new Dialog(ProductActivity.this);
+        dialog1.setContentView(R.layout.add_dialog);
+        tvTitleDialog= dialog1.findViewById(R.id.tvTitleDialog);
+        tvTitleDialog.setText("SỬA SẢN PHẨM");
+        edtTitle= dialog1.findViewById(R.id.edtTitle);
+        edtPrice= dialog1.findViewById(R.id.edtPrice);
+        spnColor= dialog1.findViewById(R.id.spnColor);
+        spnBrand= dialog1.findViewById(R.id.spnBrand);
+        edtQuantity= dialog1.findViewById(R.id.edtQuantity);
+        edtDescr= dialog1.findViewById(R.id.edtDescr);
 
         edtTitle.setText(product.getTitle());
         edtPrice.setText(String.valueOf(product.getPrice()));
         edtQuantity.setText(String.valueOf(product.getQuantity()));
         edtDescr.setText(product.getDescr());
+
+        ibUploadImage= dialog1.findViewById(R.id.ibUploadImage);
+        ivUploadImage= dialog1.findViewById(R.id.ivUploadImage);
+        tvNotification= dialog1.findViewById(R.id.tvNotification);
+        btnCancel= dialog1.findViewById(R.id.btnCancel);
+        btnSave= dialog1.findViewById(R.id.btnSave);
 
         ArrayAdapter adapter1= new ArrayAdapter(this,android.R.layout.simple_spinner_item,color);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -445,41 +492,80 @@ public class ProductActivity extends AppCompatActivity {
 
             }
         });
-
-        dialogBuilder.setPositiveButton("Lưu", new DialogInterface.OnClickListener() {
+        ibUploadImage.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
+            public void onClick(View view) {
+                Intent intent= new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(intent, REQUEST_CODE_IMAGE);
+            }
+        });
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 String Title= edtTitle.getText().toString().trim();
                 float Price= Float.parseFloat(edtPrice.getText().toString().trim());
                 int idColor = idColr[0];
                 int idBrand = idBrnd[0];
                 int Quantity = Integer.parseInt(edtQuantity.getText().toString());
-                String Image = "abcdef";
                 String Descr = edtDescr.getText().toString();
 
+
                 try {
-                    modifyProduct(urlProduct,product.getIdProduct(),Price,Descr,Title,idColor,idBrand,Image,Quantity);
+                    modifyProduct(urlProduct,product.getIdProduct(),Price,Descr,Title,idColor,idBrand,hinhanh,Quantity);
                     Toast.makeText(ProductActivity.this, "Sửa thành công",Toast.LENGTH_SHORT).show();
+
                 }
                 catch (Exception e){
-                    Toast.makeText(ProductActivity.this, "Sửa thất bại",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProductActivity.this, "Thêm thất bại",Toast.LENGTH_SHORT).show();
                 }
+
                 getProduct(urlProduct);
-                dialogInterface.cancel();
+                dialog1.dismiss();
 
             }
         });
-        dialogBuilder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+        btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
+            public void onClick(View view) {
+                dialog1.dismiss();
             }
         });
-
-        dialogBuilder.setView(dialogView);
-        dialogBuilder.setTitle("SỬA SẢN PHẨM");
-        AlertDialog a = dialogBuilder.create();
-        a.show();
+//        dialogBuilder.setPositiveButton("Lưu", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//                String Title= edtTitle.getText().toString().trim();
+//                float Price= Float.parseFloat(edtPrice.getText().toString().trim());
+//                int idColor = idColr[0];
+//                int idBrand = idBrnd[0];
+//                int Quantity = Integer.parseInt(edtQuantity.getText().toString());
+//                String Descr = edtDescr.getText().toString();
+//
+//                try {
+//                    modifyProduct(urlProduct,product.getIdProduct(),Price,Descr,Title,idColor,idBrand,hinhanh,Quantity);
+//                    Toast.makeText(ProductActivity.this, "Sửa thành công",Toast.LENGTH_SHORT).show();
+//                }
+//                catch (Exception e){
+//                    Toast.makeText(ProductActivity.this, "Sửa thất bại",Toast.LENGTH_SHORT).show();
+//                }
+//                getProduct(urlProduct);
+//                dialogInterface.cancel();
+//
+//            }
+//        });
+//        dialogBuilder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//                dialogInterface.dismiss();
+//            }
+//        });
+//
+//        dialogBuilder.setView(dialogView);
+//        dialogBuilder.setTitle("SỬA SẢN PHẨM");
+//        AlertDialog a = dialogBuilder.create();
+//        a.show();
+        dialog1.show();
     }
 
     private void modifyProduct(String url ,int idProduct,float Price,String Descr,String Title,int idColor,int idBrand,String Image,int Quantity) throws JSONException {
@@ -628,8 +714,28 @@ public class ProductActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    public void checkdeleteProduct(int idProduct){
+        RequestQueue mRequestQueue = Volley.newRequestQueue(ProductActivity.this);
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, "http://192.168.1.10:3000/api/bill_detail/id_product/"+idProduct, null,
+                new com.android.volley.Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        if (response.length()>0){
+                            Toast.makeText(ProductActivity.this, "Không được xóa sản phẩm này", Toast.LENGTH_SHORT).show();
+                        }else{
+                            deleteProductAlret(idProduct);
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(ProductActivity.this, "Lỗi!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+        mRequestQueue.add(jsonArrayRequest);
 
-
-
+    }
 
 }

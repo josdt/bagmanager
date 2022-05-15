@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     Customer customerlogin;
 
 
-    String urllogin="http://10.0.2.2:3000/api/customer/login";
+    String urllogin="http://192.168.1.10:3000/api/customer/login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
