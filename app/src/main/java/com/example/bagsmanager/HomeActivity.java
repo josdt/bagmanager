@@ -56,9 +56,11 @@ public class HomeActivity extends AppCompatActivity {
     EditText edtName, edtAddress, edtEmail, edtPhone;
     ImageView ivProductManager, ivCustomerManager,ivBillManager, ivStatistics, ivExit;
     Button btnUpdateInfor, btnChangePass;
-    String urlCus="http://192.168.1.10:3000/api/customer";
+    String urlCus=LoginActivity.ip+":3000/api/customer";
     int idcus;
     String username;
+
+    Customer customer;
 
     EditText edtPass, edtNewPass, edtConfirmPass;
 
@@ -68,7 +70,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.homepage);
 //        getSupportActionBar().hide();
         Intent intent = getIntent();
-        Customer customer = (Customer) intent.getSerializableExtra("customerLogin");
+        customer = (Customer) intent.getSerializableExtra("customerLogin");
         idcus= customer.getIdUser();
         username=customer.getUsername();
         setControl();
@@ -166,6 +168,10 @@ public class HomeActivity extends AppCompatActivity {
             jsonbody.put("addressCustomer",address);
             jsonbody.put("email",email);
             jsonbody.put("phone", phone);
+            jsonbody.put("idRole",customer.getIdRole() );
+            jsonbody.put("username", customer.getUsername());
+            jsonbody.put("sex", customer.getSex());
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -248,7 +254,7 @@ public class HomeActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         final String requestbody = jsonbody.toString();
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, "http://192.168.1.7:3000/api/customer/login", null,
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, LoginActivity.ip+":3000/api/customer/login", null,
                 new com.android.volley.Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
@@ -301,7 +307,7 @@ public class HomeActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         final String requestbody= jsonbody.toString();
-        StringRequest stringRequest= new StringRequest(Request.Method.PUT, "http://192.168.1.7:3000/api/customer/change_pass",
+        StringRequest stringRequest= new StringRequest(Request.Method.PUT, LoginActivity.ip+":3000/api/customer/change_pass",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

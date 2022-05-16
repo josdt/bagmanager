@@ -32,8 +32,9 @@ public class LoginActivity extends AppCompatActivity {
     Button btnLogin;
     Customer customerlogin;
 
+    public  static String ip="http://192.168.101.141";
 
-    String urllogin="http://192.168.1.10:3000/api/customer/login";
+    String urllogin=ip+":3000/api/customer/login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

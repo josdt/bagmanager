@@ -52,7 +52,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
 
         Product product= products.get(position);
 
-//        ivProduct.setImageBitmap(ImageUtil.convert(product.getImage()));
+        ivProduct.setImageBitmap(ImageUtil.convert(product.getImage()));
         tvTitle.setText(product.getTitle());
         tvPrice.setText(String.valueOf(product.getPrice()));
         tvNumber.setText(String.valueOf(product.getQuantity()));

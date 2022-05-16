@@ -1,6 +1,7 @@
 package com.example.bagsmanager;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
@@ -25,6 +27,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.bagsmanager.Adapter.BillUnConfirmAdapter;
+import com.example.bagsmanager.Mail.JavaMailAPI;
 import com.example.bagsmanager.Model.Bill;
 import com.example.bagsmanager.Model.Customer;
 import com.itextpdf.kernel.geom.PageSize;
@@ -56,7 +59,9 @@ public class BillUnConfirmActivity extends AppCompatActivity {
     ArrayList<Bill> bills1;
     BillUnConfirmAdapter billAdapter;
 
-    String urlgetBill= "http://192.168.1.10:3000/api/bill";
+    String email;
+
+    String urlgetBill= LoginActivity.ip+":3000/api/bill";
 
     public static int idBill;
 
@@ -173,25 +178,73 @@ public class BillUnConfirmActivity extends AppCompatActivity {
                 });
         requestQueue.add(jsonArrayRequest);
     }
-    public void checkBill(int id){
-        RequestQueue mRequestQueue = Volley.newRequestQueue(BillUnConfirmActivity.this);
-        StringRequest stringRequest= new StringRequest(Request.Method.PUT, urlgetBill+"/"+id,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Toast.makeText(BillUnConfirmActivity.this,"Xác nhận thành công", Toast.LENGTH_SHORT).show();
-                        getBill(urlgetBill);
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(BillUnConfirmActivity.this,"Xác nhận thất bại", Toast.LENGTH_SHORT).show();
-                    }
-                });
-        mRequestQueue.add(stringRequest);
+    public void confirmDialog(int id, int idUser){
+        AlertDialog.Builder b = new AlertDialog.Builder(this);
+        b.setTitle("Cảnh báo!");
+        b.setMessage("Bạn có chắc chắn muốn khóa tài khoản khách hàng?");
+        b.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                RequestQueue mRequestQueue = Volley.newRequestQueue(BillUnConfirmActivity.this);
+                StringRequest stringRequest= new StringRequest(Request.Method.PUT, urlgetBill+"/"+id,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                Toast.makeText(BillUnConfirmActivity.this,"Xác nhận thành công", Toast.LENGTH_SHORT).show();
+                                getEmail(idUser);
+                                getBill(urlgetBill);
+                                dialogInterface.cancel();
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(BillUnConfirmActivity.this,"Xác nhận thất bại", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                mRequestQueue.add(stringRequest);
+            }
+        });
+        b.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        AlertDialog al = b.create();
+        al.show();
     }
 
+    public void getEmail(int idUser){
+        RequestQueue mRequestQueue = Volley.newRequestQueue(BillUnConfirmActivity.this);
+        JsonArrayRequest jsonArrayRequest= new JsonArrayRequest(Request.Method.GET, LoginActivity.ip + ":3000/api/customer/" + idUser, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    JSONObject k= response.getJSONObject(0);
+                    email= k.getString("email");
+                    sendEmail(email);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        mRequestQueue.add(jsonArrayRequest);
+    }
+
+    private void sendEmail(String email){
+        String message="cảm ơn bạn đã sử dụng dịch vụ của chúng tôi " +
+                "\n Đơn hàng của bạn sẽ được gửi đến trong thời gian sớm nhất";
+        String subject="Xác nhận đơn hàng";
+
+        JavaMailAPI javaMailAPI= new JavaMailAPI(BillUnConfirmActivity.this, email, subject, message);
+        javaMailAPI.execute();
+    }
 
     private void createPDF() throws FileNotFoundException {
         String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();

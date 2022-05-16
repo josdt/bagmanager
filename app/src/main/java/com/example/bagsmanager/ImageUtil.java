@@ -9,7 +9,9 @@ public class ImageUtil
 {
     public static Bitmap convert(String base64Str) throws IllegalArgumentException
     {
-        byte[] imageBytes = Base64.decode(base64Str, Base64.URL_SAFE);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        byte[] imageBytes = byteArrayOutputStream.toByteArray();
+        imageBytes = Base64.decode(base64Str, Base64.DEFAULT);
         Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
         return decodedImage;
     }

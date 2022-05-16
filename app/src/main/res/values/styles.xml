@@ -100,12 +100,14 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginLeft">20dp</item>
         <item name="android:hint">Tài khoản</item>
+        <item name="android:textColor">@color/black</item>
     </style>
     <style name="edtPassword">
         <item name="android:layout_width">200dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginLeft">20dp</item>
         <item name="android:hint">Mật khẩu</item>
+        <item name="android:textColor">@color/black</item>
     </style>
     <style name="btnLogin">
         <item name="android:layout_width">150dp</item>
@@ -113,6 +115,7 @@
         <item name="android:layout_marginTop">20dp</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:text">Đăng nhập</item>
+        <item name="android:textColor">@color/black</item>
     </style>
     <style name="tvSlogan1">
         <item name="android:layout_width">wrap_content</item>
@@ -193,17 +196,20 @@
         <item name="android:layout_width">250dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:inputType">text</item>
+        <item name="android:textColor">@color/black</item>
     </style>
     <style name="edtAddProductQuantity">
         <item name="android:layout_width">250dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:inputType">number</item>
+        <item name="android:textColor">@color/black</item>
     </style>
     <style name="edtAddProductDescr">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">100dp</item>
         <item name="android:inputType">text|textMultiLine</item>
         <item name="android:gravity">top</item>
+        <item name="android:textColor">@color/black</item>
     </style>
     <style name="button" parent="@android:style/Widget.Button">
         <item name="android:gravity">center_vertical|center_horizontal</item>

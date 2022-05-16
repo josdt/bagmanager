@@ -51,7 +51,7 @@ public class DetailBillActivity extends AppCompatActivity {
     ArrayList<DetailBill> detailBills1;
     DetailBillAdapter detailBillAdapter;
 
-    String urlgetDetailBill="http://192.168.1.10:3000/api/bill_detail";
+    String urlgetDetailBill=LoginActivity.ip+":3000/api/bill_detail";
     public int idBill;
 
     @Override

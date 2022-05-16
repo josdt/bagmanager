@@ -51,7 +51,8 @@
                 <EditText
                     android:id="@+id/edtName"
                     android:layout_width="250dp"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -69,7 +70,8 @@
                 <EditText
                     android:id="@+id/edtAddress"
                     android:layout_width="250dp"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -87,7 +89,8 @@
                 <EditText
                     android:id="@+id/edtEmail"
                     android:layout_width="250dp"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -105,7 +108,8 @@
                 <EditText
                     android:id="@+id/edtPhone"
                     android:layout_width="250dp"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"/>
             </LinearLayout>
             <Button
                 android:id="@+id/btnUpdateInfor"
@@ -114,7 +118,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="40dp"
                 android:background="#FF3177"
-                android:text="cập nhật"/>
+                android:text="cập nhật"
+                android:textColor="@color/white"/>
             <Button
                 android:id="@+id/btnChangePass"
                 android:layout_width="300dp"
@@ -122,7 +127,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:background="#FF3177"
-                android:text="đổi mật khẩu"/>
+                android:text="đổi mật khẩu"
+                android:textColor="@color/white"/>
 
 <!--            <TextView-->
 <!--                style="@style/tvTitle"-->
@@ -226,6 +232,8 @@
             android:layout_gravity="end"
             android:fitsSystemWindows="true"
             android:id="@+id/nvgView"
+            android:backgroundTint="@color/white"
+            android:background="@color/white"
             >
 
             <LinearLayout

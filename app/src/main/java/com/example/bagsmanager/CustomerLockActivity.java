@@ -52,7 +52,7 @@ public class CustomerLockActivity extends AppCompatActivity {
     ArrayList<Customer> customerslock1;
     CustomerLockAdapter customerLockAdapter;
 
-    String urlgetCustomerLock="http://192.168.1.10:3000/api/customer";
+    String urlgetCustomerLock=LoginActivity.ip+":3000/api/customer";
 
 
     @Override

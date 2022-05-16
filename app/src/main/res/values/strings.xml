@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">bagsmanager</string>
 
+
     <string-array name="color">
         <item>1</item>
         <item>2</item>

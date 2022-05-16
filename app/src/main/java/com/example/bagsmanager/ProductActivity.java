@@ -10,6 +10,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -48,15 +49,29 @@ import com.android.volley.toolbox.Volley;
 import com.example.bagsmanager.Adapter.ProductAdapter;
 import com.example.bagsmanager.Model.Brand;
 import com.example.bagsmanager.Model.Color;
+import com.example.bagsmanager.Model.Customer;
 import com.example.bagsmanager.Model.Product;
+import com.itextpdf.kernel.geom.PageSize;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.property.HorizontalAlignment;
+import com.itextpdf.layout.property.TextAlignment;
+import com.itextpdf.layout.property.VerticalAlignment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 
 import java.nio.ByteBuffer;
@@ -69,6 +84,7 @@ public class ProductActivity extends AppCompatActivity {
     ListView lvlistProduct;
     Button btnThem;
     ArrayList<Product> products;
+    ArrayList<Product> products1;
     ProductAdapter productAdapter;
 
     ArrayList<Brand> brr;
@@ -91,7 +107,7 @@ public class ProductActivity extends AppCompatActivity {
 
 
 
-    String urlProduct="http://192.168.1.10:3000/api/product";
+    String urlProduct=LoginActivity.ip+":3000/api/product";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +125,7 @@ public class ProductActivity extends AppCompatActivity {
         btnThem= findViewById(R.id.btnThem);
         lvlistProduct= findViewById(R.id.lvlistProduct);
         products= new ArrayList<>();
+        products1= new ArrayList<>();
         brr= new ArrayList<>();
         coo= new ArrayList<>();
         productAdapter= new ProductAdapter(ProductActivity.this, R.layout.product_item, products);
@@ -158,6 +175,14 @@ public class ProductActivity extends AppCompatActivity {
             case  R.id.mnStatictis:
                 startActivity(new Intent(ProductActivity.this, StatictisActivity.class));
                 break;
+            case  R.id.mnPdf:
+                try {
+                    createPDF();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                    Toast.makeText(ProductActivity.this, "Tạo dpf thất bại: "+ e.toString(), Toast.LENGTH_SHORT).show();
+                }
+                break;
             default:break;
         }
         return  super.onOptionsItemSelected(item);
@@ -172,7 +197,7 @@ public class ProductActivity extends AppCompatActivity {
 
     private void getBrands(){
         brr.clear();
-        String url="http://192.168.1.10:3000/api/brand";
+        String url=LoginActivity.ip+":3000/api/brand";
         RequestQueue requestQueue= Volley.newRequestQueue(ProductActivity.this);
         JsonArrayRequest jsonArrayRequest= new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
@@ -200,7 +225,7 @@ public class ProductActivity extends AppCompatActivity {
 
     private void getColors(){
         coo.clear();
-        String url="http://192.168.1.10:3000/api/color";
+        String url=LoginActivity.ip+":3000/api/color";
         RequestQueue requestQueue= Volley.newRequestQueue(ProductActivity.this);
         JsonArrayRequest jsonArrayRequest= new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
@@ -341,7 +366,6 @@ public class ProductActivity extends AppCompatActivity {
                 catch (Exception e){
                     Toast.makeText(ProductActivity.this, "Thêm thất bại",Toast.LENGTH_SHORT).show();
                 }
-                getProduct(urlProduct);
                 dialog.dismiss();
 
             }
@@ -404,6 +428,7 @@ public class ProductActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Toast.makeText(ProductActivity.this,response.toString(), Toast.LENGTH_SHORT).show();
+                        getProduct(urlProduct);
                     }
                 },
                 new Response.ErrorListener() {
@@ -636,7 +661,6 @@ public class ProductActivity extends AppCompatActivity {
                     Toast.makeText(ProductActivity.this, "Xóa không thành công", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
-                getProduct(urlProduct);
                 dialogInterface.cancel();
             }
         });
@@ -661,7 +685,7 @@ public class ProductActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
+                        getProduct(urlProduct);
                     }
                 },
                 new Response.ErrorListener() {
@@ -716,7 +740,7 @@ public class ProductActivity extends AppCompatActivity {
 
     public void checkdeleteProduct(int idProduct){
         RequestQueue mRequestQueue = Volley.newRequestQueue(ProductActivity.this);
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, "http://192.168.1.10:3000/api/bill_detail/id_product/"+idProduct, null,
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, LoginActivity.ip+":3000/api/bill_detail/id_product/"+idProduct, null,
                 new com.android.volley.Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
@@ -736,6 +760,70 @@ public class ProductActivity extends AppCompatActivity {
         );
         mRequestQueue.add(jsonArrayRequest);
 
+    }
+
+    private void createPDF() throws FileNotFoundException {
+        String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
+        File file = new File(pdfPath, "Sanpham.pdf");
+        OutputStream outputStream = new FileOutputStream(file);
+
+        PdfWriter writer = new PdfWriter(file);
+        PdfDocument pdfDocument = new PdfDocument(writer);
+        Document document = new Document(pdfDocument);
+
+
+        pdfDocument.setDefaultPageSize(PageSize.A4);
+        document.setMargins(12, 12, 12, 12);
+
+        Paragraph Title = new Paragraph("Danh sach san pham").setBold().setFontSize(20).setTextAlignment(TextAlignment.CENTER);
+        float[] width = {30,10,10};
+        Table table = new Table(width);
+        table.setHorizontalAlignment(HorizontalAlignment.CENTER);
+        table.setVerticalAlignment(VerticalAlignment.MIDDLE);
+
+        table.addCell(new Cell().add(new Paragraph("Ten san pham")));
+        table.addCell(new Cell().add(new Paragraph("Don gia")));
+        table.addCell(new Cell().add(new Paragraph("So luong ton")));
+
+
+
+        products1.clear();
+        RequestQueue requestQueue = Volley.newRequestQueue(ProductActivity.this);
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, urlProduct, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        for(int i=0; i<response.length(); i++){
+                            try {
+                                JSONObject k =response.getJSONObject(i);
+                                products1.add(new Product(k.getInt("idProduct"), k.getInt("price"), k.getString("descr"),
+                                        k.getString("title"), k.getInt("idColor"), k.getInt("idBrand"), k.getString("image"),
+                                        k.getInt("quantity")));
+
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        for(Product j: products1){
+                            table.addCell(new Cell().add(new Paragraph(j.getTitle()+"")));
+                            table.addCell(new Cell().add(new Paragraph(j.getPrice()+"")));
+                            table.addCell(new Cell().add(new Paragraph(j.getQuantity()+"")));
+                        }
+                        document.add(Title);
+                        document.add(table);
+                        document.close();
+                        Toast.makeText(ProductActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(ProductActivity.this, "Lỗi!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+        requestQueue.add(jsonArrayRequest);
+        Toast.makeText(this, "Đã tạo file pdf", Toast.LENGTH_SHORT).show();
     }
 
 }

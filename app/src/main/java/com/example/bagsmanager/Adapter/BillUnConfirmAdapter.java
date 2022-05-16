@@ -53,7 +53,7 @@ public class BillUnConfirmAdapter extends ArrayAdapter<Bill> {
         ivCheckBill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((BillUnConfirmActivity)context).checkBill(bill.getIdBill());
+                ((BillUnConfirmActivity)context).confirmDialog(bill.getIdBill(), bill.getIdUser());
             }
         });
 

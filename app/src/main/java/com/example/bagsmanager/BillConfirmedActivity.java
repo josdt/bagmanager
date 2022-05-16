@@ -55,7 +55,7 @@ public class BillConfirmedActivity extends AppCompatActivity {
     ArrayList<Bill> billsed1;
     BillConfirmedAdapter billConfirmedAdapter;
 
-    String urlgetBilled="http://192.168.1.10:3000/api/bill";
+    String urlgetBilled=LoginActivity.ip+":3000/api/bill";
 
     public static  int idbilled;
 

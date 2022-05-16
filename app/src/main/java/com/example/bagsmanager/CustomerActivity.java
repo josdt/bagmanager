@@ -51,7 +51,7 @@ public class CustomerActivity extends AppCompatActivity {
     ArrayList<Customer> customers1;
     CustomerAdapter customerAdapter;
 
-    String urlgetCustomer="http://192.168.1.10:3000/api/customer";
+    String urlgetCustomer=LoginActivity.ip+":3000/api/customer";
 
 
     @Override
